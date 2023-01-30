@@ -1,1 +1,21 @@
+---
+# Create/Configure vPC Interfaces
+- name: Create vPC interfaces between leaf1 and leaf2
+  dcnm_interface:
+    fabric: "{{ fabric.name }}"
+    config: "{{ interface.vpc }}"
+  vars:
+    ansible_command_timeout: 90
+    ansible_connect_timeout: 90
+  tags:
+    - interface
+    - vpc
 
+# Create/Configure Loopback Interface
+- name: Create a Loopback interface on leaf1 and leaf2
+  dcnm_interface:
+    fabric: "{{ fabric.name }}"
+    config: "{{ interface.loopback }}"
+  tags:
+    - interface
+    - loopback
