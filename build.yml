@@ -1,1 +1,10 @@
-
+---
+# This is the top level build playbook that runs the various
+# Ansible roles that will be used to build out the fabric
+- name: Build Out Fabric on NDFC
+  hosts: ndfc
+  gather_facts: false
+  roles:
+    - task01_interfaces
+    # - task02_overlay
+    # - task04_template_policy
