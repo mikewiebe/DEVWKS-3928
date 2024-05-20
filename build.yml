@@ -5,6 +5,5 @@
   hosts: ndfc
   gather_facts: false
   roles:
-    - task01_interfaces
-    - task02_overlay
-    # - task04_template_policy
+    - configure_overlay
+    # - bonus_template_policy
