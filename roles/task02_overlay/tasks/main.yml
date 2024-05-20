@@ -1,1 +1,44 @@
+---
+# -------------------
+# CREATE VRF SECTION
+# -------------------
 
+- name: Create file to hold rendered VRF information
+  ansible.builtin.template:
+    src: cisco_live_attach_vrfs.j2
+    dest: "{{ role_path }}/files/cisco_live_attach_vrfs.yml"
+
+- name: Create and store generated VRF configuration
+  ansible.builtin.set_fact:
+    vrf_config: "{{ lookup('file', 'cisco_live_attach_vrfs.yml') | from_yaml }}"
+
+# -----------------------
+# CREATE NETWORK SECTION
+# -----------------------
+
+- name: Create file to hold rendered Network information
+  ansible.builtin.template:
+    src: cisco_live_attach_nets.j2
+    dest: "{{ role_path }}/files/cisco_live_attach_nets.yml"
+
+- name: Create and store generated Network configuration
+  ansible.builtin.set_fact:
+    net_config: "{{ lookup('file', 'cisco_live_attach_nets.yml') | from_yaml }}"
+
+# --------------------------------------------------------------------
+# Manage VRF Configuration on NDFC
+# --------------------------------------------------------------------
+- name: Manage NDFC Fabric VRFs
+  cisco.dcnm.dcnm_vrf:
+    fabric: "{{ fabric.name }}"
+    state: replaced
+    config: "{{ vrf_config }}"
+
+# --------------------------------------------------------------------
+# Manage Network Configuration on NDFC
+# --------------------------------------------------------------------
+- name: Manage NDFC Fabric Networks
+  cisco.dcnm.dcnm_network:
+    fabric: "{{ fabric.name }}"
+    state: replaced
+    config: "{{ net_config }}"
