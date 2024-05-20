@@ -1,11 +1,1 @@
----
-# This file is auto-generated
-# DO NOT EDIT MANUALLY
-#
-- vrf_name: vrf_devnet
-  vrf_id: 150001
-  vlan_id: 2000
-  attach:
-    - ip_address: 10.15.10.12
-    - ip_address: 10.15.10.13
-  deploy: true
+
