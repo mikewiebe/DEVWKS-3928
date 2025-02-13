@@ -1,0 +1,13 @@
+---
+vrf_attach_group:
+  all_leaf:
+    - ip_address: 10.15.25.15
+    - ip_address: 10.15.25.16
+attach_group:
+  esxi:
+    - ip_address: 10.15.25.15
+      ports:
+        - Ethernet1/15
+    - ip_address: 10.15.25.16
+      ports:
+        - Ethernet1/15
