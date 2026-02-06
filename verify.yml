@@ -1,6 +1,6 @@
 ---
 - name: verify | verify the fabric is in the correct state
-  hosts: ndfc
+  hosts: nd
   gather_facts: false
   roles:
     - verify
