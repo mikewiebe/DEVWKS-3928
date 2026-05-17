@@ -1,9 +1,0 @@
----
-# This is the top level build playbook that runs the various
-# Ansible roles that will be used to build out the fabric
-- name: Build Out Fabric on ND
-  hosts: nd
-  gather_facts: false
-  roles:
-    - configure_overlay
-    # - bonus_template_policy
